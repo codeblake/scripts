@@ -1,0 +1,14 @@
+#!/bin/bash
+
+display_battery() {
+	capacity=$(cat /sys/class/power_supply/BAT[0,1]/capacity)
+	status=$(cat /sys/class/power_supply/BAT[0,1]/status)
+	if [ ${status} == "Charging" ]; then
+		status="+"
+	else
+		status=""
+	fi
+	echo "${status}${capacity}%"
+}
+
+display_battery
